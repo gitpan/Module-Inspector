@@ -1,0 +1,27 @@
+
+no_index: 
+  directory: 
+    - inc
+    - t
+generated_by: Module::Install version 0.64
+distribution_type: module
+version: 0.01
+name: Module-Inspector
+author: Adam Kennedy <adamk@cpan.org>
+license: perl
+build_requires: 
+  Test::More: 0.47
+requires: 
+  PPI: 1.118
+  File::Find::Rule: 0
+  YAML::Tiny: 0.10
+  File::Find::Rule::Perl: 0
+  File::Spec: 0.80
+  Carp: 0
+  File::Find::Rule::VCS: 1.02
+  perl: 5.005
+  Params::Util: 0.17
+  Archive::Extract: 0.12
+  File::Temp: 0.17
+  File::Path: 1.06
+abstract: An integrated API for inspecting Perl distributions

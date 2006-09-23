@@ -1,0 +1,88 @@
+NAME
+    Module::Inspector - An integrated API for inspecting Perl distributions
+
+DESCRIPTION
+    An entire ecosystem of CPAN modules exist around the files and formats
+    relating to the CPAN itself. Parsers and object models for various
+    different types of files have been created over the years by various
+    people for various projects.
+
+    These modules have a variety of different styles, and work in various
+    different ways.
+
+    So when it comes to analysing the structure of a Perl module (either
+    inside a repository, in a tarball, or in unpacked form) it is certainly
+    quite possible to do.
+
+    It's just that often it takes a high level of experience with the
+    various modules in question, and the knowledge of how to combine the
+    dozen of so modules in one cohesive program.
+
+    Personally, I have always found this laborious.
+
+    What I would prefer is a single API that is easy to use, implements the
+    magic invisibly behind the scenes, and co-ordinates the use of the
+    various modules for me as needed.
+
+    Module::Inspector provides such an API, and provides a companion to the
+    Class::Inspector API for accessing information on class after
+    installation.
+
+    It provides a wrapper around the various modules used to read and
+    examine the different parts of a Perl module distribution tarball, and
+    can inspect a module unrolled on disk, in a repository checkout, or just
+    look directly inside a tarball.
+
+METHODS
+TO DO
+    - Implement most of the functionality
+
+SUPPORT
+    This module is stored in an Open Repository at the following address.
+
+    <http://svn.phase-n.com/svn/cpan/trunk/Module-Inspector>
+
+    Write access to the repository is made available automatically to any
+    published CPAN author, and to most other volunteers on request.
+
+    If you are able to submit your bug report in the form of new (failing)
+    unit tests, or can apply your fix directly instead of submitting a
+    patch, you are strongly encouraged to do so as the author currently
+    maintains over 100 modules and it can take some time to deal with
+    non-Critcal bug reports or patches.
+
+    This will guarentee that your issue will be addressed in the next
+    release of the module.
+
+    If you cannot provide a direct test or fix, or don't have time to do so,
+    then regular bug reports are still accepted and appreciated via the CPAN
+    bug tracker.
+
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Module-Inspector>
+
+    For other issues, for commercial enhancement or support, or to have your
+    write access enabled for the repository, contact the author at the email
+    address above.
+
+ACKNOWLEDGEMENTS
+    The biggest acknowledgement must go to Chris Nandor, who wielded his
+    legendary Mac-fu and turned my initial fairly ordinary Darwin
+    implementation into something that actually worked properly everywhere,
+    and then donated a Mac OS X license to allow it to be maintained
+    properly.
+
+AUTHORS
+    Adam Kennedy <adamk@cpan.org>
+
+SEE ALSO
+    Class::Inspector
+
+COPYRIGHT
+    Copyright 2006 Adam Kennedy.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
+    The full text of the license can be found in the LICENSE file included
+    with this module.
+
