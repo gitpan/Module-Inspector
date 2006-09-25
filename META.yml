@@ -5,7 +5,7 @@ no_index:
     - t
 generated_by: Module::Install version 0.64
 distribution_type: module
-version: 0.01
+version: 0.02
 name: Module-Inspector
 author: Adam Kennedy <adamk@cpan.org>
 license: perl
@@ -17,11 +17,14 @@ requires:
   YAML::Tiny: 0.10
   File::Find::Rule::Perl: 0
   File::Spec: 0.80
+  version: 0.6701
   Carp: 0
   File::Find::Rule::VCS: 1.02
   perl: 5.005
   Params::Util: 0.17
   Archive::Extract: 0.12
+  Module::Manifest: 0.01
   File::Temp: 0.17
   File::Path: 1.06
+  Module::Math::Depends: 0.01
 abstract: An integrated API for inspecting Perl distributions

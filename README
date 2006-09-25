@@ -34,6 +34,166 @@ DESCRIPTION
     look directly inside a tarball.
 
 METHODS
+  new
+      # Inspect a plain dist directory or cvs/svn checkout
+      my $dir = Module::Inspector->new(
+              dist_dir => $dirpath,
+              );
+  
+      # Inspect a tarball
+      my $file = Module::Inspector->new(
+              dist_file => 'Foo-Bar-0.01.tar.gz',
+              );
+
+    The "new" constructor creates a new module inspector. It takes a named
+    param of either "dist_file", which should be the file path of the dist
+    tarball, or "dist_dir", which is the root of the distribution directory
+    (if it is already unrolled).
+
+    The distribution will be quickly pre-scanned to locate the various
+    significant documents in the distribution (although only a few are
+    initially supported).
+
+    Returns a new "Module::Inspector" object, or dies on exception.
+
+  dist_file
+    The "dist_file" accessor returns the (absolute) path to the distribution
+    tarball. If the inspector was created with "dist_dir" rather than
+    "dist_file", this will return "undef".
+
+  dist_file_type
+    The "dist_file_type" method returns the archive type of the distribution
+    tarball. This will be either 'tar.gz', 'tgz', or 'zip'. Other file types
+    are not supported.
+
+    If the inspector was created with "dist_dir" rather than "dist_file",
+    this will return "undef".
+
+  dist_dir
+    The "dist_dir" method returns the (absolute) distribution root
+    directory.
+
+    If the inspector was created with "dist_file" rather than "dist_file",
+    this method will return the temporary directory created to hold the
+    unwrapped tarball.
+
+  file_path
+      my $local_path = $inspector->file_path('lib/Foo.pm');
+
+    To simplify implementations, most tools that work with distributions
+    identify files in unix-style relative paths.
+
+    The "file_path" method takes a unix-style relative path and returns a
+    localised absolute path to the file on disk (either in the actual
+    distribution directory, or the temp directory holding the expanded
+    tarball.
+
+  dir_path
+      my $local_path = $inspector->file_path('lib');
+
+    The "dir_path" method is the matching pair of the "file_path" method.
+
+    As for that method, it takes a unix-style relative directory name, and
+    returns a localised absolute path to the directory.
+
+  version_control
+      my $vcs_type = $self->version_control;
+
+    For reasons that will hopefully be more apparant later,
+    Module::Inspector detects any version control system in use within the
+    "dist_dir" for the module.
+
+    Currently, support is limited to detection of CVS and Subversion.
+
+    Returns a the name of the version control system detected in use as a
+    string (currently 'cvs' or 'svn'). If no version control is able to be
+    detected returns the null string ''.
+
+  documents
+    The "documents" method returns a list of the names of all the documents
+    detected by the "Module::Inspector".
+
+    In scalar context, returns the number of identifyable documens found in
+    the distribution.
+
+  document_type
+      # Returns 'PPI::Document::File'
+      my $ppi_class = $inspector->document_type('lib/Foo.pm');
+
+    In Module::Inspector, all documents are represented as objects.
+
+    Thus, for each different type of document, there is going to be a
+    different class that implements the document objects for that type.
+
+    The "document_type" method returns the type for a provided document as a
+    class name.
+
+    Please note that at this time these document types are not necesarily
+    stable, and over the first several releases I may need to change the
+    class I'm using to represent a particular document type.
+
+  document
+      my $perl = $inspector->document('lib/Foo.pm');
+
+    The "document" method returns the document object for a named file,
+    loading and caching it on the fly if needed.
+
+    The type of object will vary depending on the document.
+
+    For example, a Perl file will be returned as a PPI::Document, a MANIFEST
+    file as a Module::Manifest, and so on.
+
+    Returns an object, or dies on error.
+
+  dist_name
+      # Returns Config-Tiny
+      my $name = $inspector->dist_name;
+
+    The "dist_name" method returns the name of the distribution, as
+    determined from the META.yml file.
+
+    Returns the name as a string, or dies on error.
+
+  dist_version
+    The "dist_version" method returns the version of the distribution, as
+    determined from the META.yml file in the distribution.
+
+    Returns a version object, or dies on error.
+
+  dist_requires
+      my $depends = $inspector->dist_requires;
+
+    The "dist_requires" method checks for any run-time dependencies of the
+    distribution and returns them as a Module::Math::Depends object.
+
+    See the docs for Module::Math::Depends for more information on its
+    structure and API.
+
+    If the distribution has no run-time dependencies, the object will still
+    be returned, but will be empty.
+
+    Returns a single Module::Math::Depends object, or dies on error.
+
+  dist_build_requires
+    The "dist_build_requires" method returns the build-time-only
+    dependencies of the distribution.
+
+    If there are no build-time dependencies, the object will still be
+    returned, but will be empty.
+
+    Returns a Module::Math::Depends object, or dies on exception.
+
+  dist_depends
+    The "dist_depends" method returns as for the two methods above
+    ("dist_requires" and "dist_build_requires") except that this method
+    returns a merged dependency object, representing BOTH the install-time
+    and run-time dependencies for the distribution.
+
+    If there are no build-time or run-time dependencies, the object will be
+    returned, but will be empty.
+
+    Returns a Module::Math::Depends object, or dies on error.
+
 TO DO
     - Implement most of the functionality
 
@@ -63,13 +223,6 @@ SUPPORT
     For other issues, for commercial enhancement or support, or to have your
     write access enabled for the repository, contact the author at the email
     address above.
-
-ACKNOWLEDGEMENTS
-    The biggest acknowledgement must go to Chris Nandor, who wielded his
-    legendary Mac-fu and turned my initial fairly ordinary Darwin
-    implementation into something that actually worked properly everywhere,
-    and then donated a Mac OS X license to allow it to be maintained
-    properly.
 
 AUTHORS
     Adam Kennedy <adamk@cpan.org>
