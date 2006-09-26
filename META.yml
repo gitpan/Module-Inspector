@@ -5,7 +5,7 @@ no_index:
     - t
 generated_by: Module::Install version 0.64
 distribution_type: module
-version: 0.02
+version: 0.03
 name: Module-Inspector
 author: Adam Kennedy <adamk@cpan.org>
 license: perl
@@ -14,7 +14,7 @@ build_requires:
 requires: 
   PPI: 1.118
   File::Find::Rule: 0
-  YAML::Tiny: 0.10
+  YAML::Tiny: 0.11
   File::Find::Rule::Perl: 0
   File::Spec: 0.80
   version: 0.6701
