@@ -58,7 +58,7 @@ use YAML::Tiny             ();
 
 use vars qw{$VERSION %SPECIAL};
 BEGIN {
-	$VERSION = '0.04';
+	$VERSION = '1.05';
 	%SPECIAL = (
 		'MANIFEST' => 'Module::Manifest',
 		'META.yml' => 'YAML::Tiny',
@@ -411,7 +411,7 @@ sub dist_depends {
 
 This module is stored in an Open Repository at the following address.
 
-L<http://svn.phase-n.com/svn/cpan/trunk/Module-Inspector>
+L<http://svn.ali.as/cpan/trunk/Module-Inspector>
 
 Write access to the repository is made available automatically to any
 published CPAN author, and to most other volunteers on request.
@@ -435,7 +435,7 @@ For other issues, for commercial enhancement or support, or to have your
 write access enabled for the repository, contact the author at the email
 address above.
 
-=head1 AUTHORS
+=head1 AUTHOR
 
 Adam Kennedy E<lt>adamk@cpan.orgE<gt>
 
@@ -445,7 +445,7 @@ L<Class::Inspector>
 
 =head1 COPYRIGHT
 
-Copyright 2006 Adam Kennedy.
+Copyright 2006 - 2008 Adam Kennedy.
 
 This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
